@@ -1,6 +1,9 @@
 import { useRef, useEffect } from "react";
 import type { Dispatch, SetStateAction } from "react";
+
 import type { ImagePieces } from "../types/Alpaca.types";
+import { useWindowSize } from "../hooks/useWindowSize";
+import { dinamicCanvas } from "../utils/functions";
 
 interface Props {
   image: ImagePieces;
@@ -8,6 +11,7 @@ interface Props {
 }
 
 export const Canvas = ({ image, setScreenShot }: Props) => {
+  const { width } = useWindowSize();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -15,8 +19,8 @@ export const Canvas = ({ image, setScreenShot }: Props) => {
     const ctx = canvas?.getContext("2d");
 
     if (ctx && canvas) {
-      const canvasWidth = 600;
-      const canvasHeight = 600;
+      const canvasWidth = dinamicCanvas(width);
+      const canvasHeight = dinamicCanvas(width);
       canvas.width = canvasWidth;
       canvas.height = canvasHeight;
 
@@ -50,7 +54,7 @@ export const Canvas = ({ image, setScreenShot }: Props) => {
 
       loadAndDrawImage();
     }
-  }, [image, setScreenShot]);
+  }, [image, setScreenShot, width]);
 
   const uploadImage = (src: string): Promise<HTMLImageElement> => {
     return new Promise((resolve, reject) => {

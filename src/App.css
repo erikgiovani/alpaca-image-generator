@@ -1,3 +1,40 @@
+h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+h2 {
+  font-size: 2rem;
+  color: var(--black);
+}
+
+button {
+  text-transform: capitalize;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 3rem;
+  background-color: var(--accent);
+  border: 1px solid var(--accent);
+  color: var(--black);
+  transition: background-color 0.25s;
+
+  display: flex;
+  gap: 0.5rem;
+
+  &:hover {
+    background-color: transparent;
+    color: var(--accent);
+  }
+
+  &:active,
+  &:focus {
+    outline: 4px dotted var(--black);
+  }
+}
+
 .container {
   width: 100vw;
   height: 100vh;
@@ -50,5 +87,50 @@
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+  }
+}
+
+@media (width <= 1200px) {
+  h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  button {
+    font-size: 1rem;
+  }
+
+  .container {
+    gap: 1rem;
+    .app-container {
+      flex-direction: column;
+    }
+  }
+
+  .avatar-container,
+  .section-container {
+    width: 100%;
+  }
+
+  .section-container {
+    &:nth-child(2) {
+      margin-bottom: 1rem;
+    }
+
+    div {
+      justify-content: center;
+    }
+  }
+}
+
+@media (width <= 600px) {
+  .container {
+    height: auto;
   }
 }
